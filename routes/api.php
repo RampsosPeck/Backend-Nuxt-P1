@@ -19,6 +19,11 @@ Route::group(['prefix'=>'topics'], function() {
 		Route::patch('/{post}', 'PostController@update')->middleware('auth:api');
 		Route::delete('/{post}', 'PostController@destroy')->middleware('auth:api');
 
+		// like route groups
+		Route::group(['prefix'=>'/{post}/likes'], function() {
+			Route::post('/', 'PostLikeController@store')->middleware('auth:api');
+		});
+
 	});
 
 });
